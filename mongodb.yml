@@ -21,11 +21,11 @@
         regexp: '127.0.0.1'
       replace: '0.0.0.0'
 
-  - name: Restart Nginx
-    ansible.builtin.systemd:
-      name: nginx
-      state: restarted
-      enabled: yes
+    - name: Restart Nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted
+        enabled: yes
 
 
 
