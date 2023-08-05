@@ -6,7 +6,7 @@
     component: catalogue
     db_type: mongo
 
-  -tasks:
+  tasks:
     - name: setting up catalog server calling nodejs function
       ansible.builtin.import_tasks:
         file: nodejs.yml
