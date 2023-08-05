@@ -1,0 +1,17 @@
+#copy_and_remove_Repo_files
+#yum install mongodb-org-shell -y &>>${log}
+
+
+- name: adding user and downloading Code also unzip
+  ansible.builtin.import_tasks:
+    file: copy_and_remove_Repo_files.yml
+
+- name: downloading nodejs and installing
+  ansible.builtin.yum:
+    name: mongodb-org-shell
+    state: installed
+
+
+- name: downloading nodejs and installing
+  ansible.builtin.shell: mongo --host mongodb.nareshdevops.cloud </app/schema/{{component}}
+      

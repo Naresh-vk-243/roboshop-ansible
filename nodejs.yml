@@ -1,0 +1,30 @@
+-tasks:
+  - name: copying and removing files by using import module
+    ansible.builtin.import_tasks:
+      file: copy_and_remove_files.yml
+
+
+  - name: downloading nodejs and installing
+    ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+    ansible.builtin.yum:
+      name: nodejs
+      state: installed
+
+
+  - name: adding user and downloading Code also unzip
+    ansible.builtin.import_tasks:
+      file: adduser_downloadCode_unzip.yml
+
+
+  - name: downloading nodejs and installing
+    ansible.builtin.shell: npm install
+    args:
+      chdir: /app
+
+  - name: setting up {{db_type}}
+    ansible.builtin.import_tasks:
+      file: db_schema_setup.yml
+
+  - name: restarting and enabling {{component}}
+    ansible.builtin.import_tasks:
+      file: restarting_enabling_service.yml

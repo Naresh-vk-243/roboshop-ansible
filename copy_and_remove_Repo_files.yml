@@ -1,0 +1,5 @@
+- name: copying repo files
+  ansible.builtin.copy:
+    src: "{{db_type}}".service
+    dest: /etc/yum.repos.d/{{db_type}}.repo
+    follow: yes
