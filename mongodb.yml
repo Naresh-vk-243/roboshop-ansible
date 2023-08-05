@@ -2,23 +2,23 @@
 - name: setting up mongodb server
   hosts: all
   become: true
+  vars:
+  db_type: mongo
 
   tasks:
-  - name: removing and copying repo files
-    ansible.builtin.copy:
-      src: mongo.repo
-      dest:  /etc/tum.repos.d/mongo.repo
-      follow: yes
+    - name: removing repo files
+      ansible.builtin.import_tasks:
+        file: copy_and_remove_Repo_files.yml
 
-  - name: installling mongodb
-    ansible.builtin.yum:
-      name: mongodb-org
-      state: installed
+    - name: installling mongodb
+      ansible.builtin.yum:
+        name: mongodb-org
+        state: installed
 
-  - name: Replace the ip address to 0.0.0.0
-    ansible.builtin.replace:
-      path: /etc/mongod.conf
-      regexp: '127.0.0.1'
+    - name: Replace the ip address to 0.0.0.0
+      ansible.builtin.replace:
+        path: /etc/mongod.conf
+        regexp: '127.0.0.1'
       replace: '0.0.0.0'
 
   - name: Restart Nginx
