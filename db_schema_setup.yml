@@ -12,6 +12,6 @@
     state: installed
 
 
-- name: downloading nodejs and installing
-  ansible.builtin.shell: mongo --host mongodb.nareshdevops.cloud </app/schema/{{component}}
+- name: SETTING UP SCHEMA
+  ansible.builtin.shell: mongo --host mongodb.nareshdevops.cloud </app/schema/{{component}}.js
       
