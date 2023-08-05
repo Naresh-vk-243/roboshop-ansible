@@ -11,7 +11,7 @@
       follow: yes
 
   - name: installling mongodb
-    ansible.buitlin.yum:
+    ansible.builtin.yum:
       name: mongodb-org
       state: installed
 
