@@ -1,5 +1,5 @@
 - name: copying service files
   ansible.builtin.copy:
-    src: "{{component}}".service
+    src: "{{component}}.service"
     dest: /etc/systemd/system/{{component}}.service
     follow: yes
