@@ -5,6 +5,8 @@
 
 - name: downloading nodejs and installing
   ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+- name: downloading nodejs and installing
   ansible.builtin.yum:
     name: nodejs
     state: installed
