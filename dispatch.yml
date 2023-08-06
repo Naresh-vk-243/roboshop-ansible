@@ -13,8 +13,7 @@
     - name: installing golang packages
       ansible.builtin.yum:
         Name: golang
-        state: installed
-        disable_gpg_check: true
+        state: present
 
     - name: adding user and downloading Code also unzip
       ansible.builtin.import_tasks:
