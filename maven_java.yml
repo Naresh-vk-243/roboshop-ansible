@@ -19,7 +19,7 @@
 
 - name: Install {{db_type}} Client
   ansible.builtin.yum:
-    name: "{{mysql}}"
+    name: "{{db_type}}"
     state: installed
 
 - name: Load Schema
