@@ -25,6 +25,12 @@
         regexp: '127.0.0.1'
         replace: '0.0.0.0'
 
+    - name: Replace the ip address to 0.0.0.0
+      ansible.builtin.replace:
+        path: /etc/redis/redis.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
+
     - name: restarting and enabling
       ansible.builtin.import_tasks:
         file: restratingAndEnablingWithoutDeamon.yml
