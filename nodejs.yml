@@ -22,10 +22,9 @@
   args:
     chdir: /app
 
-- name: creating app dir
+- name: navigating to  app dir
   ansible.builtin.file:
     path: /app
-    state: directory
 
 - name: setting up {{db_type}}
   ansible.builtin.import_tasks:
