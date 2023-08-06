@@ -25,7 +25,7 @@
 - name: setting up {{db_type}}
   ansible.builtin.import_tasks:
     file: db_schema_setup.yml
-    when: db_type is defined
+    when: "{{db_type}}" is defined
 
 - name: restarting and enabling {{component}}
   ansible.builtin.import_tasks:
