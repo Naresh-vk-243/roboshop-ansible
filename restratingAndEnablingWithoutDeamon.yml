@@ -1,4 +1,4 @@
-- name: restarting {component} service and enabling
+- name: restarting {{component}} service and enabling
   ansible.builtin.systemd:
     name: "{{component}}"
     state: restarted
