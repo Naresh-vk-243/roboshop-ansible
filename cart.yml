@@ -1,0 +1,14 @@
+---
+- name: setting up cart server
+  hosts: all
+  become: true
+  vars:
+    component: cart
+    db_type: mongo
+
+  tasks:
+    - name: setting up catalog server calling nodejs function
+      ansible.builtin.import_tasks:
+        file: nodejs.yml
+
+

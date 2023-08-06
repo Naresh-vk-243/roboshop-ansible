@@ -1,0 +1,42 @@
+#copy_and_remove_files
+#
+#echo -e "${Red} <<<<<<<<<<<<<< installing python >>>>>>>>>>>>>>${End}"
+#yum install python36 gcc python3-devel -y &>>${log}
+#
+#adduser_downloadCode_unzip
+#
+#sed -i "s/rabbitmq_app_password/${rabbitmq_app_password}/" /etc/systemd/system/${component}.service
+#
+#echo -e "${Red} <<<<<<<<<<<<<< installing dependencies >>>>>>>>>>>>>>${End}"
+#cd /app &>>${log}
+#pip3.6 install -r requirements.txt &>>${log}
+#
+#restarting_enabling_service
+
+- name: copying and removing service files by using import module
+  ansible.builtin.import_tasks:
+    file: copy_and_remove_files.yml
+
+- name: Install Python
+  ansible.builtin.yum:
+    name:
+      - python36
+      - gcc
+      - python3-devel
+    state: installed
+
+
+- name: adding user and downloading Code also unzip
+  ansible.builtin.import_tasks:
+    file: adduser_downloadCode_unzip.yml
+
+
+- name: Download Python Dependencies
+  ansible.builtin.shell: pip3.6 install -r requirements.txt
+  args:
+    chdir: /app
+
+
+- name: restarting and enabling {{component}}
+  ansible.builtin.import_tasks:
+    file: restarting_enabling_service.yml

@@ -1,12 +1,8 @@
-#copy_and_remove_Repo_files
-#yum install mongodb-org-shell -y &>>${log}
-
-
-- name: adding user and downloading Code also unzip
+- name: copy_and_remove_Repo_files
   ansible.builtin.import_tasks:
     file: copy_and_remove_Repo_files.yml
 
-- name: downloading nodejs and installing
+- name: downloading mongodb server and installing
   ansible.builtin.yum:
     name: mongodb-org-shell
     state: installed

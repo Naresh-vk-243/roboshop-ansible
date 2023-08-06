@@ -2,29 +2,29 @@
   ansible.builtin.import_tasks:
     file: copy_and_remove_files.yml
 
-
-- name: downloading nodejs and installing
-  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-
-- name: downloading nodejs and installing
+- name: Install Maven
   ansible.builtin.yum:
-    name: nodejs
+    name: maven
     state: installed
-
 
 - name: adding user and downloading Code also unzip
   ansible.builtin.import_tasks:
     file: adduser_downloadCode_unzip.yml
 
-
-- name: changing directory to /app
-  ansible.builtin.shell: npm install
+- name: Download Maven Dependencies
+  ansible.builtin.shell: mvn clean package ; mv target/{{component}}-1.0.jar {{component}}.jar
   args:
     chdir: /app
 
-- name: setting up {{db_type}}
-  ansible.builtin.import_tasks:
-    file: db_schema_setup.yml
+
+- name: Install {{db_type}} Client
+  ansible.builtin.yum:
+    name: "{{mysql}}"
+    state: installed
+
+- name: Load Schema
+  ansible.builtin.shell: mysql -h mysql.rdevopsb72.online -uroot -pRoboShop@1 < /app/schema/{{component}}.sql
+
 
 - name: restarting and enabling {{component}}
   ansible.builtin.import_tasks:

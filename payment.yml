@@ -1,0 +1,13 @@
+---
+- name: setting up catalogue server
+  hosts: all
+  become: true
+  vars:
+    component: payment
+
+  tasks:
+    - name: setting up payment server calling python function
+      ansible.builtin.import_tasks:
+        file: python.yml
+
+
