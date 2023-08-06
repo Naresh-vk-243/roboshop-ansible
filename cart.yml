@@ -4,7 +4,6 @@
   become: true
   vars:
     component: cart
-    db_type: mongo
 
   tasks:
     - name: setting up catalog server calling nodejs function
