@@ -22,10 +22,6 @@
   args:
     chdir: /app
 
-- name: navigating to  app dir
-  ansible.builtin.file:
-    path: /app
-
 - name: setting up {{db_type}}
   ansible.builtin.import_tasks:
     file: db_schema_setup.yml

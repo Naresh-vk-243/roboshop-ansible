@@ -7,6 +7,9 @@
     name: mongodb-org-shell
     state: installed
 
+- name: navigating to  app dir
+  ansible.builtin.file:
+    path: /app
 
 - name: SETTING UP SCHEMA
   ansible.builtin.shell: mongo --host mongodb.nareshdevops.cloud </app/schema/{{component}}.js
