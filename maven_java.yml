@@ -23,7 +23,7 @@
     state: installed
 
 - name: Load Schema
-  ansible.builtin.shell: mysql -h mysql.rdevopsb72.online -uroot -pRoboShop@1 < /app/schema/{{component}}.sql
+  ansible.builtin.shell: mysql -h mysql.nareshdevops.cloud -uroot -pRoboShop@1 < /app/schema/{{component}}.sql
 
 
 - name: restarting and enabling {{component}}
