@@ -3,7 +3,7 @@
   hosts: all
   become: true
   vars:
-    component: catalogue
+    component: mysql
     db_type: mysql
 
 
