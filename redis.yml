@@ -2,7 +2,8 @@
 - name: setting up redis server
   hosts: all
   become: true
-
+  vars:
+    component: redis
   tasks:
 
     - name: Install Redis Repo
