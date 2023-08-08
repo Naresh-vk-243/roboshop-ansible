@@ -1,0 +1,3 @@
+- name: setting up shipping server calling maven java function
+  ansible.builtin.import_tasks:
+    file: maven_java.yml

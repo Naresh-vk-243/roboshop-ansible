@@ -1,0 +1,31 @@
+- name: copying and removing service files by using import module
+  ansible.builtin.import_tasks:
+    file: copy_and_remove_files.yml
+
+- name: installing golang packages
+  ansible.builtin.yum:
+    name: golang
+    state: present
+
+- name: adding user and downloading Code also unzip
+  ansible.builtin.import_tasks:
+    file: adduser_downloadCode_unzip.yml
+
+- name: Initialize Go module
+  command: go mod init dispatch
+  args:
+    chdir: /app
+
+- name: Get dependencies
+  command: go get
+  args:
+    chdir: /app
+
+- name: Build the Go project
+  command: go build
+  args:
+    chdir: /app
+
+- name: restarting and enabling {{component}}
+  ansible.builtin.import_tasks:
+    file: restarting_enabling_service.yml
